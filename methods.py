@@ -47,17 +47,16 @@ def plotModelResults(model, X_train, y_train, X_test, y_test, plot_intervals=Fal
     plt.tight_layout()
     plt.grid(True);
 
-
-    def plotCoefficients(model, x_train):
+def plotCoefficients(model, x_train):
     """
         Plots sorted coefficient values of the model
     """
-    
+
     coefs = pd.DataFrame(model.coef_, x_train.columns)
     coefs.columns = ["coef"]
     coefs["abs"] = coefs.coef.apply(np.abs)
     coefs = coefs.sort_values(by="abs", ascending=False).drop(["abs"], axis=1)
-    
+
     plt.figure(figsize=(12, 6))
     plt.title("features coefficients", fontsize=TITLE_SIZE)
     plt.xlabel("feature", fontsize=XLABEL_SIZE)
@@ -182,8 +181,7 @@ def convert_reg_score_to_categories(input_labels):
     categorical_scores.append(i)
   return categorical_scores
 
-
-  def plotRoc(fpr, tpr, auc):
+def plotRoc(fpr, tpr, auc):
     plt.figure(figsize=FIG_SIZE)
     plt.plot(fpr, tpr, label='ROC curve (AUC = %0.2f)' % auc)
     plt.plot([0, 1], [0, 1], 'k--')
